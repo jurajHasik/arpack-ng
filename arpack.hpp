@@ -1,8 +1,8 @@
 #ifndef __ARPACK_HPP__
 #define __ARPACK_HPP__
 
-// #include <complex.h>
-// #include <complex>
+//#include <complex.h>
+#include <complex>
 
 namespace arpack {
 enum class which : int {
@@ -176,79 +176,79 @@ inline void neupd(bool rvec, howmny const howmny_option, int* select,
                      ncv, v, ldv, iparam, ipntr, workd, workl, lworkl, &info);
 }
 
-// inline void naupd(int& ido, bmat const bmat_option, int n,
-//                   which const ritz_option, int nev, float tol,
-//                   std::complex<float>* resid, int ncv, std::complex<float>* v,
-//                   int ldv, int* iparam, int* ipntr, std::complex<float>* workd,
-//                   std::complex<float>* workl, int lworkl,
-//                   float* rwork, int& info) {
-//   internal::cnaupd_c(&ido, internal::convert_to_char(bmat_option), n,
-//                      internal::convert_to_char(ritz_option), nev, tol,
-//                      reinterpret_cast<_Complex float*>(resid), ncv,
-//                      reinterpret_cast<_Complex float*>(v), ldv, iparam, ipntr,
-//                      reinterpret_cast<_Complex float*>(workd),
-//                      reinterpret_cast<_Complex float*>(workl), lworkl,
-//                      rwork, &info);
-// }
+ inline void naupd(int& ido, bmat const bmat_option, int n,
+                   which const ritz_option, int nev, float tol,
+                   std::complex<float>* resid, int ncv, std::complex<float>* v,
+                   int ldv, int* iparam, int* ipntr, std::complex<float>* workd,
+                   std::complex<float>* workl, int lworkl,
+                   float* rwork, int& info) {
+   internal::cnaupd_c(&ido, internal::convert_to_char(bmat_option), n,
+                      internal::convert_to_char(ritz_option), nev, tol,
+                      reinterpret_cast<_Complex float*>(resid), ncv,
+                      reinterpret_cast<_Complex float*>(v), ldv, iparam, ipntr,
+                      reinterpret_cast<_Complex float*>(workd),
+                      reinterpret_cast<_Complex float*>(workl), lworkl,
+                      rwork, &info);
+ }
 
-// inline void neupd(bool rvec, howmny const howmny_option, int* select,
-//                   std::complex<float>* d, std::complex<float>* z, int ldz,
-//                   std::complex<float> sigma, std::complex<float>* workev,
-//                   bmat const bmat_option, int n, which const ritz_option,
-//                   int nev, float tol, std::complex<float>* resid, int ncv,
-//                   std::complex<float>* v, int ldv, int* iparam, int* ipntr,
-//                   std::complex<float>* workd, std::complex<float>* workl,
-//                   int lworkl, float* rwork, int& info) {
-//   internal::cneupd_c(rvec, internal::convert_to_char(howmny_option), select,
-//                      reinterpret_cast<_Complex float*>(d),
-//                      reinterpret_cast<_Complex float*>(z), ldz,
-//                      std::real(sigma) + std::imag(sigma) * I,
-//                      reinterpret_cast<_Complex float*>(workev),
-//                      internal::convert_to_char(bmat_option), n,
-//                      internal::convert_to_char(ritz_option), nev, tol,
-//                      reinterpret_cast<_Complex float*>(resid), ncv,
-//                      reinterpret_cast<_Complex float*>(v), ldv, iparam, ipntr,
-//                      reinterpret_cast<_Complex float*>(workd),
-//                      reinterpret_cast<_Complex float*>(workl), lworkl,
-//                      rwork, &info);
-// }
+ inline void neupd(bool rvec, howmny const howmny_option, int* select,
+                   std::complex<float>* d, std::complex<float>* z, int ldz,
+                   std::complex<float> sigma, std::complex<float>* workev,
+                   bmat const bmat_option, int n, which const ritz_option,
+                   int nev, float tol, std::complex<float>* resid, int ncv,
+                   std::complex<float>* v, int ldv, int* iparam, int* ipntr,
+                   std::complex<float>* workd, std::complex<float>* workl,
+                   int lworkl, float* rwork, int& info) {
+   internal::cneupd_c(rvec, internal::convert_to_char(howmny_option), select,
+                      reinterpret_cast<_Complex float*>(d),
+                      reinterpret_cast<_Complex float*>(z), ldz,
+		      reinterpret_cast<_Complex float &>(sigma),
+		      reinterpret_cast<_Complex float*>(workev),
+                      internal::convert_to_char(bmat_option), n,
+                      internal::convert_to_char(ritz_option), nev, tol,
+                      reinterpret_cast<_Complex float*>(resid), ncv,
+                      reinterpret_cast<_Complex float*>(v), ldv, iparam, ipntr,
+                      reinterpret_cast<_Complex float*>(workd),
+                      reinterpret_cast<_Complex float*>(workl), lworkl,
+                      rwork, &info);
+ }
 
-// inline void naupd(int& ido, bmat const bmat_option, int n,
-//                   which const ritz_option, int nev, double tol,
-//                   std::complex<double>* resid, int ncv, std::complex<double>* v,
-//                   int ldv, int* iparam, int* ipntr, std::complex<double>* workd,
-//                   std::complex<double>* workl, int lworkl,
-//                   double* rwork, int& info) {
-//   internal::znaupd_c(&ido, internal::convert_to_char(bmat_option), n,
-//                      internal::convert_to_char(ritz_option), nev, tol,
-//                      reinterpret_cast<_Complex double*>(resid), ncv,
-//                      reinterpret_cast<_Complex double*>(v), ldv, iparam, ipntr,
-//                      reinterpret_cast<_Complex double*>(workd),
-//                      reinterpret_cast<_Complex double*>(workl), lworkl,
-//                      rwork, &info);
-// }
+ inline void naupd(int& ido, bmat const bmat_option, int n,
+                   which const ritz_option, int nev, double tol,
+                   std::complex<double>* resid, int ncv, std::complex<double>* v,
+                   int ldv, int* iparam, int* ipntr, std::complex<double>* workd,
+                   std::complex<double>* workl, int lworkl,
+                   double* rwork, int& info) {
+   internal::znaupd_c(&ido, internal::convert_to_char(bmat_option), n,
+                      internal::convert_to_char(ritz_option), nev, tol,
+                      reinterpret_cast<_Complex double*>(resid), ncv,
+                      reinterpret_cast<_Complex double*>(v), ldv, iparam, ipntr,
+                      reinterpret_cast<_Complex double*>(workd),
+                      reinterpret_cast<_Complex double*>(workl), lworkl,
+                      rwork, &info);
+ }
 
-// inline void neupd(bool rvec, howmny const howmny_option, int* select,
-//                   std::complex<double>* d, std::complex<double>* z, int ldz,
-//                   std::complex<double> sigma, std::complex<double>* workev,
-//                   bmat const bmat_option, int n, which const ritz_option,
-//                   int nev, double tol, std::complex<double>* resid, int ncv,
-//                   std::complex<double>* v, int ldv, int* iparam, int* ipntr,
-//                   std::complex<double>* workd, std::complex<double>* workl,
-//                   int lworkl, double* rwork, int& info) {
-//   internal::zneupd_c(rvec, internal::convert_to_char(howmny_option), select,
-//                      reinterpret_cast<_Complex double*>(d),
-//                      reinterpret_cast<_Complex double*>(z), ldz,
-//                      std::real(sigma) + _Complex_I * std::imag(sigma),
-//                      reinterpret_cast<_Complex double*>(workev),
-//                      internal::convert_to_char(bmat_option), n,
-//                      internal::convert_to_char(ritz_option), nev, tol,
-//                      reinterpret_cast<_Complex double*>(resid), ncv,
-//                      reinterpret_cast<_Complex double*>(v), ldv, iparam, ipntr,
-//                      reinterpret_cast<_Complex double*>(workd),
-//                      reinterpret_cast<_Complex double*>(workl), lworkl,
-//                      rwork, &info);
-// }
+ inline void neupd(bool rvec, howmny const howmny_option, int* select,
+                   std::complex<double>* d, std::complex<double>* z, int ldz,
+                   std::complex<double> sigma, std::complex<double>* workev,
+                   bmat const bmat_option, int n, which const ritz_option,
+                   int nev, double tol, std::complex<double>* resid, int ncv,
+                   std::complex<double>* v, int ldv, int* iparam, int* ipntr,
+                   std::complex<double>* workd, std::complex<double>* workl,
+                   int lworkl, double* rwork, int& info) {
+   internal::zneupd_c(rvec, internal::convert_to_char(howmny_option), select,
+                      reinterpret_cast<_Complex double*>(d),
+                      reinterpret_cast<_Complex double*>(z), ldz,
+		      reinterpret_cast<_Complex double &>(sigma),
+		      reinterpret_cast<_Complex double*>(workev),
+                      internal::convert_to_char(bmat_option), n,
+                      internal::convert_to_char(ritz_option), nev, tol,
+                      reinterpret_cast<_Complex double*>(resid), ncv,
+                      reinterpret_cast<_Complex double*>(v), ldv, iparam, ipntr,
+                      reinterpret_cast<_Complex double*>(workd),
+                      reinterpret_cast<_Complex double*>(workl), lworkl,
+                      rwork, &info);
+ }
 }  // namespace arpack
 
 #endif
